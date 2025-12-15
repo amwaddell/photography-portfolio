@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>About – Alistair Waddell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+  <div class="site-title">Alistair Waddell</div>
+
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-left">
+      <a href="/"
+         >
+        Portfolio
+      </a>
+      <!--
+      <span class="sep"> // </span>
+      <a href="/project-01.html"
+         >
+        Project-01
+      </a>
+      -->
+    </div>
+
+    <div class="nav-right">
+      <a href="/about.html"
+         aria-current="page">
+        About
+      </a>
+    </div>
+  </nav>
+</header>
+
+
+  <main class="page">
+    <section class="text-section">
+  <h2>About</h2>
+  <p>I’m Alistair, a photographer based in Munich.</p>
+  <p>This selection highlights some of my favourite pieces.</p>
+</section>
+
+<section class="text-section">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:alist@irwaddell.com">alist@irwaddell.com</a></p>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Alistair Waddell</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
