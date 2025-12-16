@@ -3,21 +3,28 @@
 *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root{
-  --page-max: 960px;
   --photo-max: 900px;   /* controls BOTH max-width and max-height */
+
+  --gap: clamp(1.25rem, 4vw, 2.75rem);
+  --pad: var(--gap);
+
+  --page-max: calc(var(--photo-max) + (2 * var(--pad)));
+
   --text-max: 720px;
   --pad: 1.5rem;
   --muted: #666;
   --text: #111;
   --line: #e9e9e9;
   --bg: #fff;
+  --sans: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: "Source Serif 4", "Times New Roman", Times, serif;
 }
 
 body{
-  font-family: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--sans);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.2;
 }
 
 a{ color: inherit; text-decoration: none; }
@@ -29,15 +36,17 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   top: 0;
   z-index: 1000;
 
+  width: 100%;
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line); /* now spans full page */
+}
 
+.site-header__inner{
   max-width: var(--page-max);
   margin: 0 auto;
   padding: 1.25rem var(--pad) 1rem;
 
-  /* NEW: force two lines (title then nav) */
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -45,8 +54,10 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
 /* Line 1 */
 .site-title{
-  font-size: 1rem;
-  letter-spacing: 0.16em;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -54,6 +65,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 /* Line 2 */
 .site-nav{
   /* NEW: ensure it's on its own row + left/right alignment */
+  font-family: var(--sans);
   display: flex;
   justify-content: space-between; /* left group / right group */
   align-items: baseline;
@@ -65,8 +77,9 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
 .site-nav a{
   font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: 0.03em;
   color: var(--muted);
 }
 
@@ -96,27 +109,21 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 /* Gallery */
 .work{ margin-top: 0.5rem; }
 
-.photo-block{ margin: 0 auto 2.75rem; }
+.photo-block{ margin: 0 auto var(--gap); }
 
 /* The important part: responsive + square cap */
 .photo-block img{
-  display: block;
-  margin: 0 auto;
-
   width: 100%;
-  max-width: var(--photo-max);
-
+  max-width: 100%;   /* fill the 900px content area */
   height: auto;
-  max-height: var(--photo-max); /* equals max-width to avoid 4:3 shrinking */
-
-  transition: transform 0.4s ease;
+  max-height: var(--photo-max);
 }
 
 .photo-block:hover img{ transform: scale(1.01); }
 
 /* Text sections */
 .text-section{
-  margin: 3rem auto 0;
+  margin: 3rem 0 0;     /* was: 3rem auto 0 */
   max-width: var(--text-max);
 }
 
